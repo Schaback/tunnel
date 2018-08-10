@@ -13,11 +13,6 @@ if [[ $# -lt 3 ]] || [[ $(($# % 2)) -eq 0 ]]; then
 	exit 1
 fi
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 1>&2
-   exit 1
-fi
-
 addr="$1"
 shift
 
@@ -36,7 +31,7 @@ while [[ $# -gt 0 ]]; do
 	    ;;
         esac
     done
-    socat TCP4-LISTEN:$1,fork,su=nobody TCP6:$addr:$2 &
+    socat TCP4-LISTEN:$1,fork TCP6:$addr:$2 &
     shift
     shift
 done
