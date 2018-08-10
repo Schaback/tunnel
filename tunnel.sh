@@ -31,7 +31,7 @@ while [[ $# -gt 0 ]]; do
 	    ;;
         esac
     done
-    socat TCP4-LISTEN:$1,fork TCP6:$addr:$2 &
+    socat -d -d -d -d TCP4-LISTEN:$1,fork TCP6:$addr:$2 &
     shift
     shift
 done
